@@ -14,15 +14,15 @@ import time
 def wait_until_is_downloaded(path, isDownloaded):
     time.sleep(3)
     if not isDownloaded:
-        print("File jdk is downloading")
+        print("Is downloading")
         downloads = os.listdir(path)
         count = 0
         for file in downloads:
-            if file.endswith("jdk-8u251-linux-x64.tar.gz"):
-                print("Download finished!")
+            if file.endswith(".part"):
                 count += 1
-        if count == 0:
-            wait_until_is_downloaded(path, False)    
+        if count != 0:
+            wait_until_is_downloaded(path, False)
+        print("FINISH")  
         
 def install_java():
     username = "javiernegsb1997@gmail.com"
@@ -55,7 +55,7 @@ def install_java():
     print("Creating Web Driver and go to oracle downloads")
     browser = webdriver.Firefox(firefox_profile=profile, executable_path='./geckodriver')
     browser.get('https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html')
-    time.sleep(5)
+    time.sleep(10)
     
     print("Accept cookies")
     iframe = browser.find_element_by_xpath('//*[@title="TrustArc Cookie Consent Manager"]')
