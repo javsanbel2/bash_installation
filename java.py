@@ -27,11 +27,11 @@ def install_java():
     path_scriptfolder = os.path.expanduser("~/Desktop/scriptfiles");
     
     print("Installing pip...")
-    _ = os.system('sudo apt install python-pip')
+    _ = os.system('sudo apt install python3-pip')
     os.system("clear")
     
     print("Installing selenium")
-    _ = os.system('pip install selenium')
+    _ = os.system('pip3 install selenium')
     os.system("clear")
     from selenium import webdriver
     
