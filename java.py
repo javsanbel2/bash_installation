@@ -11,6 +11,14 @@ import os
 import requests
 import time
 
+def wait_until_is_downloaded(path):
+    isDownloading = True
+    while isDownloading:
+        downloads = os.listdir(path)
+        for file in downloads:
+            if file == ("jdk-8u251-linux-x64.tar.gz"):
+                isDownloading = False        
+        
 def install_java():
     username = "javiernegsb1997@gmail.com"
     password = "Ingles123."
@@ -64,6 +72,8 @@ def install_java():
     browser.find_element_by_xpath('//*[@id="ssopassword"]').send_keys(password)
     browser.find_element_by_xpath('/html/body/div/div[3]/div[1]/form/div[2]/span/input').click()
     
+    # Wait until is downloaded
+    wait_until_is_downloaded(os.path.expanduser("~/Downloads"))
     # Move file to our directory
     print("Extract JDK to Java's default location")
     
