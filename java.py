@@ -16,7 +16,7 @@ def wait_until_is_downloaded(path):
     while isDownloading:
         downloads = os.listdir(path)
         for file in downloads:
-            if file == ("jdk-8u251-linux-x64.tar.gz"):
+            if not file.endswith(".part"):
                 isDownloading = False        
         
 def install_java():
@@ -71,6 +71,7 @@ def install_java():
     browser.find_element_by_xpath('//*[@id="sso_username"]').send_keys(username)
     browser.find_element_by_xpath('//*[@id="ssopassword"]').send_keys(password)
     browser.find_element_by_xpath('/html/body/div/div[3]/div[1]/form/div[2]/span/input').click()
+    time.sleep(2)
     
     # Wait until is downloaded
     wait_until_is_downloaded(os.path.expanduser("~/Downloads"))
