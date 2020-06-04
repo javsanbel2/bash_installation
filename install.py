@@ -7,19 +7,26 @@
 # Java JDK 1.8
 # Eclipse
 #===============================================================================
-
+import multiprocessing
 from python import install_python;
 from java import install_java;
 from eclipse import install_eclipse;
 
 
-print("Starting environment installation")
-
-print("Installing python")
-install_python()
-
-print("Installing java")
-install_java()
-
-print("Installing eclipse")
-install_eclipse()
+if __name__ == '__main__':
+    print("Starting environment installation")
+    jobs = []
+     
+    # Python process
+    p = multiprocessing.Process(target=install_python)
+    jobs.append(p)
+    p.start()
+    # Java process
+    p = multiprocessing.Process(target=install_java)
+    jobs.append(p)
+    p.start()
+    # Eclipse process
+    p = multiprocessing.Process(target=install_eclipse)
+    jobs.append(p)
+    p.start()
+     
