@@ -11,13 +11,18 @@ import os
 import requests
 import time
 
-def wait_until_is_downloaded(path):
-    isDownloading = True
-    while isDownloading:
+def wait_until_is_downloaded(path, isDownloaded):
+    time.sleep(3)
+    if not isDownloaded:
+        print("File jdk is downloading")
         downloads = os.listdir(path)
+        count = 0
         for file in downloads:
-            if not file.endswith(".part"):
-                isDownloading = False        
+            if file.endswith("jdk-8u251-linux-x64.tar.gz"):
+                print("Download finished!")
+                count += 1
+        if count == 0:
+            wait_until_is_downloaded(path, False)    
         
 def install_java():
     username = "javiernegsb1997@gmail.com"
@@ -74,7 +79,7 @@ def install_java():
     time.sleep(2)
     
     # Wait until is downloaded
-    wait_until_is_downloaded(os.path.expanduser("~/Downloads"))
+    wait_until_is_downloaded(os.path.expanduser("~/Downloads"), False)
     # Move file to our directory
     print("Extract JDK to Java's default location")
     
