@@ -55,7 +55,7 @@ def install_java():
     print("Accept cookies")
     iframe = browser.find_element_by_xpath('//*[@title="TrustArc Cookie Consent Manager"]')
     browser.switch_to.frame(iframe);
-    button_browser = browser.find_element_by_link_text("I accept all cookies").click()
+    browser.find_element_by_link_text("I accept all cookies").click()
     browser.switch_to.default_content();
     time.sleep(1)
     
@@ -84,7 +84,13 @@ def install_java():
     _ = os.system("sudo tar -xvzf " + path_scriptfolder + "/" + filename);
     
     print("Set environment variables")
-    # TO DO TO DO TO DO TO DO 
+    _ = os.system("echo 'export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/jdk1.8.0_251/bin:/usr/lib/jvm/jdk1.8.0_251/db/bin:/usr/lib/jvm/jdk1.8.0_251/jre/bin' >> ~/.bashrc");
+    _ = os.system("echo 'export J2SDKDIR=/usr/lib/jvm/jdk1.8.0_251' >> ~/.bashrc");
+    _ = os.system("echo 'export J2REDIR=/usr/lib/jvm/jdk1.8.0_251/jre' >> ~/.bashrc");
+    _ = os.system("echo 'export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_251' >> ~/.bashrc");
+    _ = os.system("echo 'export DERBY_HOME=/usr/lib/jvm/jdk1.8.0_251/db' >> ~/.bashrc");
+    _ = os.system("exec bash");
+
     
     print("Inform Ubuntu about the installed location")
     _ = os.system('sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_251/bin/java" 0');
@@ -96,4 +102,3 @@ def install_java():
     _ = os.system('update-alternatives --list java');
     _ = os.system('update-alternatives --list javac');
     
-    #check version

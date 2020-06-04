@@ -40,8 +40,6 @@ def install_python():
     _ = os.system("make install");
     
     # Set environment variables
-    _ = os.system("export PATH=" + path_python +":$PATH");
-    _ = os.system("export LD_LIBRARY_PATH=" + path_python + "/lib" + ":$LD_LIBRARY_PATH");
-    
-    # Check Python
-    _ = os.system("which python")
+    _ = os.system("echo 'export PATH=~/Desktop/scriptfiles/Python-3.6.8:$PATH' >> ~/.bashrc");
+    _ = os.system("echo 'export LD_LIBRARY_PATH=~/Desktop/scriptfiles/Python-3.6.8/lib:$LD_LIBRARY_PATH' >> ~/.bashrc");
+    _ = os.system("exec bash");
