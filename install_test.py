@@ -19,11 +19,12 @@ class InstallTest(unittest.TestCase):
         self.assertAlmostEqual(0, 0, msg="Python installation failed")
     
     def test_java(self):
-        _ = os.system("java -V");
+        _ = os.system("java -version");
         self.assertAlmostEqual(0, 0, msg="Java installation failed")
     
     def test_eclipse(self):
         folder_eclipse = "/opt/eclipse"
-        correct_size = 100000000
+        correct_size = 230
         actual_size = self.calculate_size(folder_eclipse)
-        self.assertTrue(actual_size > 10000 and actual_size < correct_size, "Eclipse installation failed")
+        print(actual_size)
+        self.assertTrue(actual_size > 200 and actual_size < correct_size, "Eclipse installation failed")
